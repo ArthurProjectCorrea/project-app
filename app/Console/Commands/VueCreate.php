@@ -33,12 +33,27 @@ class VueCreate extends Command
     $path = resource_path("vue/{$filename}.vue");
 
     if (File::exists($path)) {
-        $this->error('File already exists!');
-        return 1;
+      $this->error('File already exists!');
+      return 1;
     }
 
     File::ensureDirectoryExists(dirname($path));
-    File::put($path, '');
+    $content = <<<VUE
+              <template>
+                <!-- Your HTML goes here -->
+              </template>
+
+              <script>
+                export default {
+                  // Your JavaScript goes here
+                }
+              </script>
+
+              <style scoped>
+                /* Your CSS goes here */
+              </style>
+              VUE;
+    File::put($path, $content);
 
     $this->info('File created successfully.');
     return 0;
