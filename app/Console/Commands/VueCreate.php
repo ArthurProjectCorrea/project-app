@@ -43,7 +43,7 @@ class VueCreate extends Command
                 <!-- Your HTML goes here -->
               </template>
 
-              <script>
+              <script setup>
                 export default {
                   // Your JavaScript goes here
                 }
